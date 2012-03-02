@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+
 
 import time
 import os
@@ -16,8 +16,8 @@ class SQLiteLockFile(LockBase):
         >>> lock = SQLiteLockFile('somefile', threaded=False)
         """
         LockBase.__init__(self, path, threaded)
-        self.lock_file = unicode(self.lock_file)
-        self.unique_name = unicode(self.unique_name)
+        self.lock_file = str(self.lock_file)
+        self.unique_name = str(self.unique_name)
 
         if SQLiteLockFile.testdb is None:
             import tempfile

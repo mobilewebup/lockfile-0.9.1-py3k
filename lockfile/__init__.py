@@ -55,7 +55,7 @@ import socket
 import os
 import threading
 import time
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import warnings
 
 # Work with PEP8 and non-PEP8 versions of threading module.
@@ -251,7 +251,7 @@ def LinkFileLock(*args, **kwds):
     Do not use in new code.  Instead, import LinkLockFile from the
     lockfile.linklockfile module.
     """
-    import linklockfile
+    from . import linklockfile
     return _fl_helper(linklockfile.LinkLockFile, "lockfile.linklockfile",
                       *args, **kwds)
 
@@ -261,7 +261,7 @@ def MkdirFileLock(*args, **kwds):
     Do not use in new code.  Instead, import MkdirLockFile from the
     lockfile.mkdirlockfile module.
     """
-    import mkdirlockfile
+    from . import mkdirlockfile
     return _fl_helper(mkdirlockfile.MkdirLockFile, "lockfile.mkdirlockfile",
                       *args, **kwds)
 
@@ -271,15 +271,15 @@ def SQLiteFileLock(*args, **kwds):
     Do not use in new code.  Instead, import SQLiteLockFile from the
     lockfile.mkdirlockfile module.
     """
-    import sqlitelockfile
+    from . import sqlitelockfile
     return _fl_helper(sqlitelockfile.SQLiteLockFile, "lockfile.sqlitelockfile",
                       *args, **kwds)
 
 if hasattr(os, "link"):
-    import linklockfile as _llf
+    from . import linklockfile as _llf
     LockFile = _llf.LinkLockFile
 else:
-    import mkdirlockfile as _mlf
+    from . import mkdirlockfile as _mlf
     LockFile = _mlf.MkdirLockFile
 
 FileLock = LockFile
