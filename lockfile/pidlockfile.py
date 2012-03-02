@@ -22,7 +22,6 @@ import time
 from . import (LockBase, AlreadyLocked, LockFailed, NotLocked, NotMyLock,
                LockTimeout)
 
-
 class PIDLockFile(LockBase):
     """ Lockfile implemented as a Unix PID file.
 
